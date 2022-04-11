@@ -143,5 +143,8 @@ app.get('/api/v1/paybytext/:id', handleDeletePayByTextById)
 
 
 //POST request for a single id
-app.get('/api/v1/paybytext',handleUpsertPayByText)
+app.get('/api/v1/paybytext',
+    body(accountNumber).isLength({min:5}),
+    body(_id).isAlpha()
+,handleUpsertPayByText)
 
