@@ -89,38 +89,43 @@ const handleDeletePayByTextById=(req,res)=>{
 
 //handler for POST request for a single id
 const handleUpsertPayByText=(req,res)=>{
-    const {body} =req;
-    const {accountName, active, accountNumber,createdOn,issuer,paymentType,
-    modifiedOn,merchantId,createdBy,executeFlag,identityId,paymentMethod,
-    modifiedBy,_id,walletId} =body; 
-
-    const user_id= data.payByTextItems.length+1;
-
-    const user= {
-      accountName,
-      active,
-      accountNumber,
-      createdOn,
-      issuer,
-      paymentType,
-      modifiedOn,
-      merchantId,
-      createdBy,
-      executeFlag,
-      identityId,
-      paymentMethod:{
-          walletId:user_id
-      },
-      modifiedBy,
-      _id:user_id
+    try {
+        const {body} =req;
+        const {accountName, active, accountNumber,createdOn,issuer,paymentType,
+        modifiedOn,merchantId,createdBy,executeFlag,identityId,paymentMethod,
+        modifiedBy,_id,walletId} =body; 
+    
+        const user_id= data.payByTextItems.length+1;
+    
+        const user= {
+          accountName,
+          active,
+          accountNumber,
+          createdOn,
+          issuer,
+          paymentType,
+          modifiedOn,
+          merchantId,
+          createdBy,
+          executeFlag,
+          identityId,
+          paymentMethod:{
+              walletId:user_id
+          },
+          modifiedBy,
+          _id:user_id
+        }
+        data.payByTextItems.push(user);
+        res
+            .status(200)
+            .json({
+                "code":200, 
+                "message":"Successfully added user"
+            });
+    } catch (error) {
+        
     }
-    data.payByTextItems.push(user);
-    res
-        .status(200)
-        .json({
-            "code":200, 
-            "message":"Successfully added user"
-        });
+    
 }
 
 // GET requet for a single id
