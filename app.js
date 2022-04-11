@@ -24,6 +24,10 @@ app.get('/api/v1/paybytext',(req,res)=>{
 
 // handler for GET request for a single id
 const handleGetPayByTextByIdentityId=(req,res)=>{
+    const errors = validationResult(req); // validating the request
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
     const {params}=req;
     const {id} = params;
     let httpStatusCode, httpMessageBody;
@@ -53,6 +57,10 @@ const handleGetPayByTextByIdentityId=(req,res)=>{
 // handler for DELETE request for a single id
 const handleDeletePayByTextById=(req,res)=>{
     try {
+        const errors = validationResult(req); // validating the request
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         const {params} =req;
         const {id} = params;
         const index= data.payByTextItems.findIndex((element)=>{
