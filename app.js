@@ -59,10 +59,10 @@ const handleGetPayByTextByIdentityId=(req,res)=>{
 // handler for DELETE request for a single id
 const handleDeletePayByTextById=(req,res)=>{
     try {
-        const errors = validationResult(req); // validating the request
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        // const errors = validationResult(req); // validating the request
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({ errors: errors.array() });
+        // }
         const {params} =req;
         const {id} = params;
         const index= data.payByTextItems.findIndex((element)=>{
@@ -167,15 +167,15 @@ app.get('/api/v1/paybytext/list/byIdentity/:id/',
 
 //DELETE request for a single id
 app.delete('/api/v1/paybytext/:id/',
-    body('_id')
-        .isAlphanumeric()
-        .exists(),
-    body('accountNumber')
-        .isLength({min:5})
-        .exists(),
-    body('accountName')
-        .exists()
-        .isString(),
+    // body('_id')
+    //     .isAlphanumeric()
+    //     .exists(),
+    // body('accountNumber')
+    //     .isLength({min:5})
+    //     .exists(),
+    // body('accountName')
+    //     .exists()
+    //     .isString(),
     handleDeletePayByTextById)
 
 
