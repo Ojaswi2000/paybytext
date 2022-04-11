@@ -30,10 +30,11 @@ const handleGetPayByTextByIdentityId=(req,res)=>{
         }
     const {params}=req;
     const {id} = params;
-    let httpStatusCode, httpMessageBody;
+    let httpStatusCode, httpMessageBody,flag=0;
 
     for(let i=0;i<data.payByTextItems.length; i++){
         if(data.payByTextItems[i]._id === id){
+            flag=1;
             res
                 .status(200)
                 .json({
@@ -43,7 +44,7 @@ const handleGetPayByTextByIdentityId=(req,res)=>{
             return;
                 }
         }
-        
+        if(flag==0){
             res
                 .status(404)
                 .json({
@@ -51,7 +52,7 @@ const handleGetPayByTextByIdentityId=(req,res)=>{
                     httpMessageBody: `PAYBYTEXT not found for the given id:${id}`
                 })
             return;
-        
+        }
     
 }
 
