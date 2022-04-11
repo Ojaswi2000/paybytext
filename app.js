@@ -65,23 +65,31 @@ app.delete('/api/v1/paybytext/:id',(req,res)=>{
 
 //POST request for id
 app.post('/api/v1/paybytext',(req,res)=>{
+
+    const {body} =req;
+    const {accountName, active, accountNumber,createdOn,issuer,paymentType,
+    modifiedOn,merchantId,createdBy,executeFlag,identityId,paymentMethod,
+    modifiedBy,_id,walletId} =body; 
+
+    const user_id= data.payByTextItems.length+1;
+
     const user= {
-      "accountName" : req.body.accountName,
-      "active" : req.body.active,
-      "accountNumber" : req.body.accountNumber,
-      "createdOn" : req.body.createdOn,
-      "issuer" : req.body.issuer,
-      "paymentType" : req.body.paymentType,
-      "modifiedOn" : req.body.modifiedOn,
-      "merchantId" : req.body.merchantId,
-      "createdBy" : req.body.createdBy,
-      "executeFlag" : req.body.executeFlag,
-      "identityId" : req.body.identityId,
-      "paymentMethod" : {
-        "walletId" : data.payByTextItems.length+1
+      accountName,
+      active,
+      accountNumber,
+      createdOn,
+      issuer,
+      paymentType,
+      modifiedOn,
+      merchantId,
+      createdBy,
+      executeFlag,
+      identityId,
+      paymentMethod:{
+          walletId:user_id
       },
-      "modifiedBy" : req.body.modifiedBy,
-      "_id" : data.payByTextItems.length+1
+      modifiedBy,
+      _id
     }
     data.payByTextItems.push(user);
     res.json(user);
