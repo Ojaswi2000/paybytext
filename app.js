@@ -57,7 +57,7 @@ const handleDeletePayByTextById=(req,res)=>{
         const index= data.payByTextItems.findIndex((element)=>{
             return (element._id === String(id));
         })
-        let httpStatusCode,httpMessageBody
+        let httpStatusCode,httpMessageBody;
         if(index){
             let del = data.payByTextItems[index];
             data.payByTextItems.splice(index,1); //delete one object 
