@@ -181,14 +181,14 @@ app.get('/api/v1/paybytext/:id/',
 
 //POST request for a single id
 app.post('/api/v1/paybytext/',
-    // body('_id')
-    //     .isAlphanumeric()
-    //     .exists(),
-    // body('accountNumber')
-    //     .isLength({min:5})
-    //     .exists(),
-    // body('accountName')
-    //     .exists()
-    //     .isString(),
+    body('_id')
+        .isAlphanumeric()
+        .exists(),
+    body('accountNumber')
+        .isLength({min:5})
+        .exists(),
+    body('accountName')
+        .exists()
+        .isString(),
     handleUpsertPayByText)
 
