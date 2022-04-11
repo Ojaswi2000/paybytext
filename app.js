@@ -92,5 +92,5 @@ app.post('/api/v1/paybytext',(req,res)=>{
       _id
     }
     data.payByTextItems.push(user);
-    res.json(user);
+    res.status(200).json({"code":200, "message":"Successfully added user"});
 })
