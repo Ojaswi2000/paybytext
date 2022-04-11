@@ -166,7 +166,7 @@ app.get('/api/v1/paybytext/list/byIdentity/:id/',
 
 
 //DELETE request for a single id
-app.get('/api/v1/paybytext/:id/',
+app.delete('/api/v1/paybytext/:id/',
     // body('_id')
     //     .isAlphanumeric()
     //     .exists(),
