@@ -29,7 +29,7 @@ app.get('/api/v1/paybytext/list/byIdentity/:id',(req,res)=>{
             return;
         }
         else{
-            res.status(404).json({message: "Not found!"});
+            res.status(404).json({code:"404",message: "Not found!"});
             res.end();
         }
     }
@@ -44,7 +44,8 @@ app.get('/api/v1/paybytext/list/byIdentity/:id',(req,res)=>{
 
 //DELETE request for single id
 app.delete('/api/v1/paybytext/:id',(req,res)=>{
-    const id= req.params.id;
+    const {params} =req;
+    const {id} = params;
     const index= data.payByTextItems.findIndex((element)=>{
         return (element._id === String(id));
     })
