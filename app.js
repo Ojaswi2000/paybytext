@@ -41,17 +41,18 @@ const handleGetPayByTextByIdentityId=(req,res)=>{
                     httpMessageBody: data.payByTextItems[i]
                 });
             return;
+                }
         }
-        else{
+        
             res
                 .status(404)
                 .json({
                     httpStatusCode: "404",
-                    httpMessageBody: `PAYBYTEXT not found for the given id:${id} `
+                    httpMessageBody: `PAYBYTEXT not found for the given id:${id}`
                 })
             return;
-        }
-    }
+        
+    
 }
 
 // handler for DELETE request for a single id
@@ -148,43 +149,43 @@ const handleUpsertPayByText=(req,res)=>{
 }
 
 // GET request for a single id
-app.get('/api/v1/paybytext/list/byIdentity/:id',
-    body(_id)
-        .isAlphanumeric()
-        .exists(),
-    body(accountNumber)
-        .isLength({min:5})
-        .exists(),
-    body(accountName)
-        .exists()
-        .isString(),
+app.get('/api/v1/paybytext/list/byIdentity/:id/',
+    // // body('_id')
+    // //     .isAlphanumeric()
+    // //     .exists(),
+    // // body('accountNumber')
+    // //     .isLength({min:5})
+    // //     .exists(),
+    // // body('accountName')
+    // //     .exists()
+    //     .isString(),
     handleGetPayByTextByIdentityId)
 
 
 //DELETE request for a single id
-app.get('/api/v1/paybytext/:id',
-    body(_id)
+app.get('/api/v1/paybytext/:id/',
+    body('_id')
         .isAlphanumeric()
         .exists(),
-    body(accountNumber)
+    body('accountNumber')
         .isLength({min:5})
         .exists(),
-    body(accountName)
+    body('accountName')
         .exists()
         .isString(),
     handleDeletePayByTextById)
 
 
 //POST request for a single id
-app.get('/api/v1/paybytext',
-    body(_id)
-        .isAlphanumeric()
-        .exists(),
-    body(accountNumber)
-        .isLength({min:5})
-        .exists(),
-    body(accountName)
-        .exists()
-        .isString(),
+app.get('/api/v1/paybytext/',
+    // body('_id')
+    //     .isAlphanumeric()
+    //     .exists(),
+    // body('accountNumber')
+    //     .isLength({min:5})
+    //     .exists(),
+    // body('accountName')
+    //     .exists()
+    //     .isString(),
     handleUpsertPayByText)
 
