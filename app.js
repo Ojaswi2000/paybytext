@@ -153,15 +153,15 @@ const handleUpsertPayByText=(req,res)=>{
 
 // GET request for a single id
 app.get('/api/v1/paybytext/list/byIdentity/:id/',
-    // // body('_id')
-    // //     .isAlphanumeric()
-    // //     .exists(),
-    // // body('accountNumber')
-    // //     .isLength({min:5})
-    // //     .exists(),
-    // // body('accountName')
-    // //     .exists()
-    //     .isString(),
+    body('_id')
+        .isAlphanumeric()
+        .exists(),
+    body('accountNumber')
+        .isLength({min:5})
+        .exists(),
+    body('accountName')
+        .exists()
+        .isString(),
     handleGetPayByTextByIdentityId)
 
 
