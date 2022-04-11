@@ -87,17 +87,8 @@ const handleDeletePayByTextById=(req,res)=>{
     
 }
 
-// GET requet for a single id
-app.get('/api/v1/paybytext/list/byIdentity/:id', handleGetPayByTextByIdentityId)
-
-
-//DELETE request for a single id
-app.get('/api/v1/paybytext/:id', handleDeletePayByTextById)
-
-
-//POST request for id
-app.post('/api/v1/paybytext',(req,res)=>{
-
+//handler for POST request for a single id
+const handleUpsertPayByText=(req,res)=>{
     const {body} =req;
     const {accountName, active, accountNumber,createdOn,issuer,paymentType,
     modifiedOn,merchantId,createdBy,executeFlag,identityId,paymentMethod,
@@ -130,4 +121,16 @@ app.post('/api/v1/paybytext',(req,res)=>{
             "code":200, 
             "message":"Successfully added user"
         });
-})
+}
+
+// GET requet for a single id
+app.get('/api/v1/paybytext/list/byIdentity/:id', handleGetPayByTextByIdentityId)
+
+
+//DELETE request for a single id
+app.get('/api/v1/paybytext/:id', handleDeletePayByTextById)
+
+
+//POST request for a single id
+app.get('/api/v1/paybytext',handleUpsertPayByText)
+
