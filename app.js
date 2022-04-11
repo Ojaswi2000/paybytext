@@ -94,7 +94,7 @@ const handleUpsertPayByText=(req,res)=>{
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
-          }
+        }
         const {body} = req;
         const {accountName, active, accountNumber,createdOn,issuer,paymentType,
         modifiedOn,merchantId,createdBy,executeFlag,identityId,paymentMethod,
