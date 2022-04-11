@@ -144,12 +144,29 @@ app.get('/api/v1/paybytext/list/byIdentity/:id', handleGetPayByTextByIdentityId)
 
 
 //DELETE request for a single id
-app.get('/api/v1/paybytext/:id', handleDeletePayByTextById)
+app.get('/api/v1/paybytext/:id',
+    body(_id)
+        .isAlphanumeric()
+        .exists(),
+    body(accountNumber)
+        .isLength({min:5})
+        .exists(),
+    body(accountName)
+        .exists()
+        .isString()
+,handleDeletePayByTextById)
 
 
 //POST request for a single id
 app.get('/api/v1/paybytext',
-    body(accountNumber).isLength({min:5}),
-    body(_id).isAlpha()
+    body(_id)
+        .isAlphanumeric()
+        .exists(),
+        body(accountNumber)
+        .isLength({min:5})
+        .exists(),
+        body(accountName)
+        .exists()
+        .isString()
 ,handleUpsertPayByText)
 
