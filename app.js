@@ -123,7 +123,12 @@ const handleUpsertPayByText=(req,res)=>{
                 "message":"Successfully added user"
             });
     } catch (error) {
-        
+        res
+            .status(500)
+            .json({
+                errorCode:500,
+                errorMessage:"POST failed due to server error"
+            })
     }
     
 }
