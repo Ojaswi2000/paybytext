@@ -25,23 +25,26 @@ app.get('/api/v1/paybytext',(req,res)=>{
 const handleGetPayByTextByIdentityId=(req,res)=>{
     const {params}=req;
     const {id} = params;
+    let httpStatusCode, httpMessageBody;
 
-    if(!id){
-        res
-        .status(404)
-        .json({
-            "code":404,
-            "message": `PAYBYTEXT not found for the given id:${id} `
-        })
-    }
     for(let i=0;i<data.payByTextItems.length; i++){
         if(data.payByTextItems[i]._id === id){
-            res.status(200).json(data.payByTextItems[i]);
+            res
+                .status(200)
+                .json({
+                    httpStatusCode: "200",
+                    httpMessageBody: data.payByTextItems[i]
+                });
             return;
         }
         else{
-            res.status(404).json({code:"404",message: "Not found!"});
-            res.end();
+            res
+                .status(404)
+                .json({
+                    httpStatusCode: "404",
+                    httpMessageBody: `PAYBYTEXT not found for the given id:${id} `
+                })
+            return;
         }
     }
 }
