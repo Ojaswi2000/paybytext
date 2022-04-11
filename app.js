@@ -91,7 +91,8 @@ const handleDeletePayByTextById=(req,res)=>{
 //handler for POST request for a single id
 const handleUpsertPayByText=(req,res)=>{
     try {
-        const {body} =req;
+        const errors = validationResult(req);
+        const {body} = req;
         const {accountName, active, accountNumber,createdOn,issuer,paymentType,
         modifiedOn,merchantId,createdBy,executeFlag,identityId,paymentMethod,
         modifiedBy,_id,walletId} =body; 
