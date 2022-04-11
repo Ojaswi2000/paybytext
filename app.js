@@ -25,6 +25,15 @@ app.get('/api/v1/paybytext',(req,res)=>{
 const handleGetPayByTextByIdentityId=(req,res)=>{
     const {params}=req;
     const {id} = params;
+
+    if(!id){
+        res
+        .status(404)
+        .json({
+            "code":404,
+            "message": `PAYBYTEXT not found for the given id:${id} `
+        })
+    }
     for(let i=0;i<data.payByTextItems.length; i++){
         if(data.payByTextItems[i]._id === id){
             res.status(200).json(data.payByTextItems[i]);
