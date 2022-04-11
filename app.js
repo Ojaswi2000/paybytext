@@ -59,10 +59,10 @@ const handleGetPayByTextByIdentityId=(req,res)=>{
 // handler for DELETE request for a single id
 const handleDeletePayByTextById=(req,res)=>{
     try {
-        const errors = validationResult(req); // validating the request
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        // const errors = validationResult(req); // validating the request
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({ errors: errors.array() });
+        // }
         const {params} =req;
         const {id} = params;
         const index= data.payByTextItems.findIndex((element)=>{
@@ -78,6 +78,7 @@ const handleDeletePayByTextById=(req,res)=>{
                     httpStatusCode:200,
                     httpMessageBody: `The deleted item from the dataset is:${del}`
                 });
+                return;
             }
         else{
             res
@@ -86,6 +87,7 @@ const handleDeletePayByTextById=(req,res)=>{
                     httpStatusCode:404,
                     httpMessageBody: `Id not found !`
                 });
+                return;
         }
     } catch (error) {
         res
@@ -111,9 +113,9 @@ const handleUpsertPayByText=(req,res)=>{
         modifiedOn,merchantId,createdBy,executeFlag,identityId,paymentMethod,
         modifiedBy,_id,walletId} =body; 
     
-        const user_id= data.payByTextItems.length+1;
+        let user_id= data.payByTextItems.length+1;
     
-        const user= {
+        let user= {
           accountName,
           active,
           accountNumber,
@@ -144,8 +146,8 @@ const handleUpsertPayByText=(req,res)=>{
             .json({
                 errorCode:500,
                 errorMessage:"POST failed due to server error"
-            })
-    }
+            })}
+    
     
 }
 
@@ -178,7 +180,7 @@ app.get('/api/v1/paybytext/:id/',
 
 
 //POST request for a single id
-app.get('/api/v1/paybytext/',
+app.post('/api/v1/paybytext/',
     // body('_id')
     //     .isAlphanumeric()
     //     .exists(),
