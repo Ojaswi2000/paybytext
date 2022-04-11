@@ -1,5 +1,5 @@
 const express= require('express');
-const {body, validationResult} = require('express-validator'); 
+const {body, validationResult} = require('express-validator'); //imported express-validator
 const data = require('./data');
 
 const app= express();
