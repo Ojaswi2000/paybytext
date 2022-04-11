@@ -92,6 +92,9 @@ const handleDeletePayByTextById=(req,res)=>{
 const handleUpsertPayByText=(req,res)=>{
     try {
         const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+          }
         const {body} = req;
         const {accountName, active, accountNumber,createdOn,issuer,paymentType,
         modifiedOn,merchantId,createdBy,executeFlag,identityId,paymentMethod,
