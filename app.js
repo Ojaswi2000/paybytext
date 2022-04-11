@@ -106,7 +106,7 @@ app.post('/api/v1/paybytext',(req,res)=>{
           walletId:user_id
       },
       modifiedBy,
-      _id
+      _id:user_id
     }
     data.payByTextItems.push(user);
     res.status(200).json({"code":200, "message":"Successfully added user"});
