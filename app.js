@@ -140,7 +140,17 @@ const handleUpsertPayByText=(req,res)=>{
 }
 
 // GET request for a single id
-app.get('/api/v1/paybytext/list/byIdentity/:id', handleGetPayByTextByIdentityId)
+app.get('/api/v1/paybytext/list/byIdentity/:id',
+    body(_id)
+        .isAlphanumeric()
+        .exists(),
+    body(accountNumber)
+        .isLength({min:5})
+        .exists(),
+    body(accountName)
+        .exists()
+        .isString(),
+    handleGetPayByTextByIdentityId)
 
 
 //DELETE request for a single id
@@ -153,8 +163,8 @@ app.get('/api/v1/paybytext/:id',
         .exists(),
     body(accountName)
         .exists()
-        .isString()
-,handleDeletePayByTextById)
+        .isString(),
+    handleDeletePayByTextById)
 
 
 //POST request for a single id
@@ -167,6 +177,6 @@ app.get('/api/v1/paybytext',
         .exists(),
     body(accountName)
         .exists()
-        .isString()
-,handleUpsertPayByText)
+        .isString(),
+    handleUpsertPayByText)
 
