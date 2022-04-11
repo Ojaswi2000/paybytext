@@ -139,7 +139,7 @@ const handleUpsertPayByText=(req,res)=>{
     
 }
 
-// GET requet for a single id
+// GET request for a single id
 app.get('/api/v1/paybytext/list/byIdentity/:id', handleGetPayByTextByIdentityId)
 
 
