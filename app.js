@@ -51,7 +51,40 @@ const handleGetPayByTextByIdentityId=(req,res)=>{
 
 // handler for DELETE request for a single id
 const handleDeletePayByTextById=(req,res)=>{
-
+    try {
+        const {params} =req;
+        const {id} = params;
+        const index= data.payByTextItems.findIndex((element)=>{
+            return (element._id === String(id));
+        })
+        let httpStatusCode,httpMessageBody
+        if(index){
+            let del = data.payByTextItems[index];
+            data.payByTextItems.splice(index,1); //delete one object 
+            res
+                .status(200)
+                .json({
+                    httpStatusCode:200,
+                    httpMessageBody: `The deleted item from the dataset is:${del}`
+                });
+            }
+        else{
+            res
+                .status(404)
+                .json({
+                    httpStatusCode:404,
+                    httpMessageBody: `Id not found !`
+                });
+        }
+    } catch (error) {
+        res
+            .status(500)
+            .json({
+                errorCode:500,
+                errorMessage: "The request failed due to server error"
+            })
+    }
+    
 }
 
 // GET requet for a single id
@@ -61,27 +94,6 @@ app.get('/api/v1/paybytext/list/byIdentity/:id', handleGetPayByTextByIdentityId)
 //DELETE request for a single id
 app.get('/api/v1/paybytext/:id', handleDeletePayByTextById)
 
-
-
-//DELETE request for single id
-app.delete('/api/v1/paybytext/:id',(req,res)=>{
-    const {params} =req;
-    const {id} = params;
-    const index= data.payByTextItems.findIndex((element)=>{
-        return (element._id === String(id));
-    })
-
-    if(index){
-        let del = data.payByTextItems[index];
-        data.payByTextItems.splice(index,1); //delete one object 
-        res.status(200).json(del);
-    }
-    else{
-        res.status(404).json({message: "Not found the id!"});
-        res.end();
-    }
-    
-})
 
 //POST request for id
 app.post('/api/v1/paybytext',(req,res)=>{
