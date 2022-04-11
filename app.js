@@ -49,15 +49,18 @@ const handleGetPayByTextByIdentityId=(req,res)=>{
     }
 }
 
+// handler for DELETE request for a single id
+const handleDeletePayByTextById=(req,res)=>{
 
+}
 
 // GET requet for a single id
 app.get('/api/v1/paybytext/list/byIdentity/:id', handleGetPayByTextByIdentityId)
 
-// app.get('/api/v1/paybytext/list/byIdentity/6019c5ce375adb942b8f9b47',(req,res)=>{
-//     const response= data.payByTextItems[1]
-//     res.json(response);
-// })
+
+//DELETE request for a single id
+app.get('/api/v1/paybytext/:id', handleDeletePayByTextById)
+
 
 
 //DELETE request for single id
