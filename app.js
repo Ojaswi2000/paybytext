@@ -20,8 +20,9 @@ app.get('/api/v1/paybytext',(req,res)=>{
     res.json(data);
 })
 
-// GET requet for a single id
-app.get('/api/v1/paybytext/list/byIdentity/:id',(req,res)=>{
+
+// handler for GET request for a single id
+const handleGetPayByTextByIdentityId=(req,res)=>{
     const {params}=req;
     const {id} = params;
     for(let i=0;i<data.payByTextItems.length; i++){
@@ -34,6 +35,13 @@ app.get('/api/v1/paybytext/list/byIdentity/:id',(req,res)=>{
             res.end();
         }
     }
+}
+
+
+
+// GET requet for a single id
+app.get('/api/v1/paybytext/list/byIdentity/:id',(req,res)=>{
+    
    
 })
 
