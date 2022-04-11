@@ -22,7 +22,8 @@ app.get('/api/v1/paybytext',(req,res)=>{
 
 // GET requet for a single id
 app.get('/api/v1/paybytext/list/byIdentity/:id',(req,res)=>{
-    const id= req.params.id;
+    const {params}=req;
+    const {id} = params;
     for(let i=0;i<data.payByTextItems.length; i++){
         if(data.payByTextItems[i]._id === id){
             res.status(200).json(data.payByTextItems[i]);
