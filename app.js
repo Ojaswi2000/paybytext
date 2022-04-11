@@ -162,10 +162,10 @@ app.get('/api/v1/paybytext',
     body(_id)
         .isAlphanumeric()
         .exists(),
-        body(accountNumber)
+    body(accountNumber)
         .isLength({min:5})
         .exists(),
-        body(accountName)
+    body(accountName)
         .exists()
         .isString()
 ,handleUpsertPayByText)
